@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 import { BuketKaart } from "@/components/BuketKaart";
+import { Button } from "@/components/ui/button";
 import { haalBuketsOp, verwijderBuket } from "@/lib/buket-beheer";
 import type { Buket } from "@/types";
 

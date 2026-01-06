@@ -6,7 +6,7 @@ export function berekenVolgendeHerhaling(woord: Woord, juist: boolean): string {
 
   if (juist) {
     const successReeks = woord.juistAantal - woord.onjuistAantal;
-    interval = Math.min(30, Math.pow(2, successReeks));
+    interval = Math.min(30, 2 ** successReeks);
   } else {
     interval = 1;
   }

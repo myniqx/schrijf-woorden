@@ -1,9 +1,9 @@
 "use client";
 
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
 import { BuketFormulier } from "@/components/BuketFormulier";
-import { haalBuketOp, opslaanBuket, maakWoord } from "@/lib/buket-beheer";
+import { haalBuketOp, maakWoord, opslaanBuket } from "@/lib/buket-beheer";
 import type { Buket } from "@/types";
 
 export default function BuketBewerken() {
@@ -52,7 +52,7 @@ export default function BuketBewerken() {
     .map((woord) =>
       woord.vertaling
         ? `${woord.origineel}: ${woord.vertaling}`
-        : woord.origineel
+        : woord.origineel,
     )
     .join("\n");
 

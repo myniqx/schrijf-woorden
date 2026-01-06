@@ -66,7 +66,7 @@ export function verwijderBuket(id: string): void {
 export function updateWoordStatistieken(
   buketId: string,
   woordId: string,
-  juist: boolean
+  juist: boolean,
 ): void {
   const buket = haalBuketOp(buketId);
   if (!buket) return;

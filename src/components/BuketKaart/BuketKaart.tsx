@@ -1,9 +1,9 @@
 "use client";
 
-import type { FC } from "react";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { FC } from "react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Buket } from "@/types";
 
 type BuketKaartProps = {
@@ -11,10 +11,13 @@ type BuketKaartProps = {
   verwijderenActie: (id: string) => void;
 };
 
-export const BuketKaart: FC<BuketKaartProps> = ({ buket, verwijderenActie }) => {
+export const BuketKaart: FC<BuketKaartProps> = ({
+  buket,
+  verwijderenActie,
+}) => {
   const woordenAantal = buket.woorden.length;
   const laatsteOefening = new Date(buket.laatsteOefening).toLocaleDateString(
-    "nl-NL"
+    "nl-NL",
   );
 
   return (

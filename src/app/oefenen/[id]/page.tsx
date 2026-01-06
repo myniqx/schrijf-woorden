@@ -1,19 +1,19 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { useRouter, useParams } from "next/navigation";
 import { Volume2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { SpecialeKarakters } from "@/components/SpecialeKarakters";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { haalBuketOp, opslaanBuket } from "@/lib/buket-beheer";
-import { selecteerWoorden, controleerAntwoord } from "@/lib/oefen-logica";
+import { controleerAntwoord, selecteerWoorden } from "@/lib/oefen-logica";
 import { updateWoordNaOefening } from "@/lib/spaced-repetition";
-import { updateStatistieken } from "@/lib/statistieken-tracker";
 import { spreekUit } from "@/lib/spraak";
-import { OefenModus } from "@/types";
+import { updateStatistieken } from "@/lib/statistieken-tracker";
 import type { Buket, Woord } from "@/types";
+import { OefenModus } from "@/types";
 
 export default function Oefenen() {
   const router = useRouter();
@@ -106,7 +106,7 @@ export default function Oefenen() {
     const bijgewerkteBuket: Buket = {
       ...buket,
       woorden: buket.woorden.map((w) =>
-        w.id === bijgewerktWoord.id ? bijgewerktWoord : w
+        w.id === bijgewerktWoord.id ? bijgewerktWoord : w,
       ),
       laatsteOefening: new Date().toISOString(),
     };
@@ -133,7 +133,7 @@ export default function Oefenen() {
     const bijgewerkteBuket: Buket = {
       ...buket,
       woorden: buket.woorden.map((w) =>
-        w.id === bijgewerktWoord.id ? bijgewerktWoord : w
+        w.id === bijgewerktWoord.id ? bijgewerktWoord : w,
       ),
     };
 
@@ -165,7 +165,7 @@ export default function Oefenen() {
 
   if (isKlaar) {
     const percentage = Math.round(
-      (juisteAntwoorden / (juisteAntwoorden + onjuisteAntwoorden)) * 100
+      (juisteAntwoorden / (juisteAntwoorden + onjuisteAntwoorden)) * 100,
     );
 
     return (
@@ -178,9 +178,7 @@ export default function Oefenen() {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="text-center space-y-2">
-              <p className="text-4xl font-bold text-green-600">
-                {percentage}%
-              </p>
+              <p className="text-4xl font-bold text-green-600">{percentage}%</p>
               <p className="text-muted-foreground">
                 {juisteAntwoorden} juist, {onjuisteAntwoorden} onjuist
               </p>
@@ -216,31 +214,42 @@ export default function Oefenen() {
         <div className="mb-6 flex gap-2">
           <Button
             size="sm"
-            variant={modus === OefenModus.HetzelfdeSchrijven ? "default" : "outline"}
+            variant={
+              modus === OefenModus.HetzelfdeSchrijven ? "default" : "outline"
+            }
             onClick={() => setModus(OefenModus.HetzelfdeSchrijven)}
           >
             1. Hetzelfde schrijven
           </Button>
           <Button
             size="sm"
-            variant={modus === OefenModus.VertalingSchrijven ? "default" : "outline"}
+            variant={
+              modus === OefenModus.VertalingSchrijven ? "default" : "outline"
+            }
             onClick={() => setModus(OefenModus.VertalingSchrijven)}
           >
             2. Vertaling schrijven
           </Button>
           <Button
             size="sm"
-            variant={modus === OefenModus.UitGeheugenSchrijven ? "default" : "outline"}
+            variant={
+              modus === OefenModus.UitGeheugenSchrijven ? "default" : "outline"
+            }
             onClick={() => setModus(OefenModus.UitGeheugenSchrijven)}
           >
             3. Uit geheugen schrijven
           </Button>
         </div>
 
-        <Card className={`mb-6 transition-colors ${
-          feedback === "juist" ? "border-green-500 bg-green-50 dark:bg-green-950" :
-          feedback === "onjuist" ? "border-red-500 bg-red-50 dark:bg-red-950" : ""
-        }`}>
+        <Card
+          className={`mb-6 transition-colors ${
+            feedback === "juist"
+              ? "border-green-500 bg-green-50 dark:bg-green-950"
+              : feedback === "onjuist"
+                ? "border-red-500 bg-red-50 dark:bg-red-950"
+                : ""
+          }`}
+        >
           <CardHeader className="relative">
             <Button
               variant="ghost"
@@ -253,19 +262,20 @@ export default function Oefenen() {
             </Button>
             <CardTitle className="text-center text-4xl font-mono">
               {geefWeerTeGeven()}
-              {modus === OefenModus.VertalingSchrijven && huidigWoord?.vertaling && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="ml-2"
-                  onMouseDown={() => setToonVertaling(true)}
-                  onMouseUp={() => setToonVertaling(false)}
-                  onMouseLeave={() => setToonVertaling(false)}
-                  title="Toon antwoord"
-                >
-                  ?
-                </Button>
-              )}
+              {modus === OefenModus.VertalingSchrijven &&
+                huidigWoord?.vertaling && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="ml-2"
+                    onMouseDown={() => setToonVertaling(true)}
+                    onMouseUp={() => setToonVertaling(false)}
+                    onMouseLeave={() => setToonVertaling(false)}
+                    title="Toon antwoord"
+                  >
+                    ?
+                  </Button>
+                )}
             </CardTitle>
             {toonVertaling && modus === OefenModus.VertalingSchrijven && (
               <p className="text-center text-muted-foreground">
@@ -288,7 +298,11 @@ export default function Oefenen() {
               className="text-2xl text-center font-mono h-16"
             />
             <div className="flex gap-2">
-              <Button onClick={handleOverslaan} variant="outline" className="flex-1">
+              <Button
+                onClick={handleOverslaan}
+                variant="outline"
+                className="flex-1"
+              >
                 Overslaan (Enter)
               </Button>
             </div>

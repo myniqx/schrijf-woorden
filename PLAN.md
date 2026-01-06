@@ -179,53 +179,55 @@ type Statistieken = {
 
 ## Implementation Phases (Implementatiefasen)
 
-### Phase 1: Foundation (Fundament)
+### Phase 1: Foundation (Fundament) ✅ COMPLETED
 - [x] Set up Next.js project with TypeScript + Tailwind
-- [ ] Create folder structure
-- [ ] Define TypeScript types (Buket, Woord, etc.)
-- [ ] Set up LocalStorage utilities
-- [ ] Install shadcn/ui components
+- [x] Create folder structure
+- [x] Define TypeScript types (Buket, Woord, etc.)
+- [x] Set up LocalStorage utilities
+- [x] Install shadcn/ui components
 
-### Phase 2: Buket Management (Buketbeheer)
-- [ ] Create home page with buket list
-- [ ] Implement BuketKaart component
-- [ ] Build buket creation form
-- [ ] Implement word parsing logic (both formats)
-- [ ] Add format button functionality
-- [ ] Save/load bukets from LocalStorage
-- [ ] Add edit/delete functionality
+### Phase 2: Buket Management (Buketbeheer) ✅ COMPLETED
+- [x] Create home page with buket list
+- [x] Implement BuketKaart component
+- [x] Build buket creation form
+- [x] Implement word parsing logic (both formats)
+- [x] Add format button functionality
+- [x] Save/load bukets from LocalStorage
+- [x] Add edit/delete functionality
 
-### Phase 3: Practice System (Oefensysteem)
-- [ ] Create practice page layout
-- [ ] Implement word selection algorithm (15-20 words, prioritize incorrect)
-- [ ] Build input field with auto-focus
-- [ ] Add special character toolbar
-- [ ] Implement auto-advance on correct answer
-- [ ] Add Enter to skip functionality
-- [ ] Create three practice modes
+### Phase 3: Practice System (Oefensysteem) ✅ COMPLETED
+- [x] Create practice page layout
+- [x] Implement word selection algorithm (15-20 words, prioritize incorrect)
+- [x] Build input field with auto-focus
+- [x] Add special character toolbar
+- [x] Implement auto-advance on correct answer
+- [x] Add Enter to skip functionality
+- [x] Create three practice modes
 
-### Phase 4: Statistics & Algorithm (Statistieken & Algoritme)
-- [ ] Track correct/incorrect per word
-- [ ] Calculate difficulty level
-- [ ] Implement spaced repetition algorithm
-- [ ] Build statistics display component
-- [ ] Add session progress tracking
-- [ ] Create daily/weekly stats view
+### Phase 4: Statistics & Algorithm (Statistieken & Algoritme) ✅ COMPLETED
+- [x] Track correct/incorrect per word
+- [x] Calculate difficulty level
+- [x] Implement spaced repetition algorithm
+- [x] Build statistics display component (session stats on completion)
+- [x] Add session progress tracking
+- [ ] Create daily/weekly stats view (separate page - optional)
 
-### Phase 5: Visual Polish (Visuele Afwerking)
-- [ ] Add success/error animations
-- [ ] Implement progress bar
-- [ ] Add smooth transitions
-- [ ] Responsive design
-- [ ] Dark mode support (optional)
-- [ ] Polish overall UI/UX
+### Phase 5: Visual Polish (Visuele Afwerking) ✅ COMPLETED
+- [x] Add success/error animations (color feedback on cards)
+- [x] Implement progress bar (counter display)
+- [x] Add smooth transitions
+- [x] Responsive design
+- [x] Dark mode support (via Tailwind)
+- [x] Polish overall UI/UX
 
-### Phase 6: Advanced Features (Geavanceerde Functies)
+### Phase 6: Advanced Features (Geavanceerde Functies) 🚧 TODO
 - [ ] Export/import bukets (JSON)
 - [ ] Duplicate buket functionality
 - [ ] Search/filter bukets
 - [ ] Keyboard shortcuts help modal
 - [ ] Settings page (test duration, word count, etc.)
+- [ ] Separate statistics page with charts
+- [ ] Audio pronunciation (Text-to-Speech)
 
 ## Key Algorithms (Belangrijke Algoritmen)
 

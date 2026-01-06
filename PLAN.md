@@ -7,6 +7,7 @@
 ## Core Features (Kernfuncties)
 
 ### 1. Buket Management (Buketbeheer)
+
 - Create new bukets with custom word lists
 - Parse pasted text in format: `woorden: words\nwerkwoorden: verbs` OR paragraph text
 - Format button cleans whitespace and organizes words
@@ -15,11 +16,13 @@
 - Edit/delete existing bukets
 
 ### 2. Word Input Formats (Woordinvoerformaten)
+
 - **Format A**: `woord: vertaling` (e.g., `huis: house`)
 - **Format B**: Paragraph text (auto-converted to individual words, punctuation removed)
 - Each line becomes one testable word
 
 ### 3. Practice/Test System (Oefensysteem)
+
 - Select a buket to start practice
 - Test 15-20 words per session (not all words)
 - Smart word selection based on:
@@ -32,6 +35,7 @@
   3. **Uit geheugen schrijven** (Write from memory): Show word for 1 second → type from memory
 
 ### 4. Input & Interaction (Invoer & Interactie)
+
 - Auto-focus on input field
 - Auto-advance to next word when correct (no Enter needed)
 - Press Enter to skip word (marked as incorrect)
@@ -43,6 +47,7 @@
   - ESC: exit test
 
 ### 5. Statistics & Progression (Statistieken & Voortgang)
+
 - Track correct/incorrect count per word
 - Difficulty level per word
 - Session progress (e.g., 5/20 words)
@@ -50,6 +55,7 @@
 - Spaced repetition algorithm (words learned well appear less frequently)
 
 ### 6. Visual Feedback (Visuele Feedback)
+
 - Green tick animation on correct answer
 - Red shake animation on incorrect answer
 - Progress bar showing session completion
@@ -58,6 +64,7 @@
 ## Technical Architecture (Technische Architectuur)
 
 ### Tech Stack
+
 - **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS v4
@@ -132,54 +139,55 @@ src/
 ```typescript
 // Buket type
 type Buket = {
-  id: string;                   // UUID
-  naam: string;                 // Buket name
-  aanmaakDatum: string;         // ISO date
-  laatsteOefening: string;      // ISO date
-  woorden: Woord[];
+	id: string; // UUID
+	naam: string; // Buket name
+	aanmaakDatum: string; // ISO date
+	laatsteOefening: string; // ISO date
+	woorden: Woord[];
 };
 
 // Woord type
 type Woord = {
-  id: string;                   // UUID
-  origineel: string;            // Original word (e.g., "huis")
-  vertaling?: string;           // Translation (e.g., "house") - optional
-  juistAantal: number;          // Correct count
-  onjuistAantal: number;        // Incorrect count
-  moeilijkheidsgraad: number;   // Difficulty level (0-10)
-  laatsteTest: string;          // ISO date
-  volgendeHerhaling: string;    // ISO date (spaced repetition)
+	id: string; // UUID
+	origineel: string; // Original word (e.g., "huis")
+	vertaling?: string; // Translation (e.g., "house") - optional
+	juistAantal: number; // Correct count
+	onjuistAantal: number; // Incorrect count
+	moeilijkheidsgraad: number; // Difficulty level (0-10)
+	laatsteTest: string; // ISO date
+	volgendeHerhaling: string; // ISO date (spaced repetition)
 };
 
 // OefenModus enum
 enum OefenModus {
-  HetzelfdSchrijven = 1,        // Write the same
-  VertalingSchrijven = 2,       // Write translation
-  UitGeheugenSchrijven = 3      // Write from memory
+	HetzelfdSchrijven = 1, // Write the same
+	VertalingSchrijven = 2, // Write translation
+	UitGeheugenSchrijven = 3, // Write from memory
 }
 
 // OefenSessie type
 type OefenSessie = {
-  buketId: string;
-  geselecteerdeWoorden: Woord[]; // 15-20 words
-  huidigeIndex: number;
-  juisteAntwoorden: number;
-  onjuisteAntwoorden: number;
-  modus: OefenModus;
+	buketId: string;
+	geselecteerdeWoorden: Woord[]; // 15-20 words
+	huidigeIndex: number;
+	juisteAntwoorden: number;
+	onjuisteAntwoorden: number;
+	modus: OefenModus;
 };
 
 // Statistieken type
 type Statistieken = {
-  totaalWoorden: number;
-  totaalJuist: number;
-  totaalOnjuist: number;
-  dagelijks: Record<string, { juist: number; onjuist: number }>;
+	totaalWoorden: number;
+	totaalJuist: number;
+	totaalOnjuist: number;
+	dagelijks: Record<string, { juist: number; onjuist: number }>;
 };
 ```
 
 ## Implementation Phases (Implementatiefasen)
 
 ### Phase 1: Foundation (Fundament) ✅ COMPLETED
+
 - [x] Set up Next.js project with TypeScript + Tailwind
 - [x] Create folder structure
 - [x] Define TypeScript types (Buket, Woord, etc.)
@@ -187,6 +195,7 @@ type Statistieken = {
 - [x] Install shadcn/ui components
 
 ### Phase 2: Buket Management (Buketbeheer) ✅ COMPLETED
+
 - [x] Create home page with buket list
 - [x] Implement BuketKaart component
 - [x] Build buket creation form
@@ -196,6 +205,7 @@ type Statistieken = {
 - [x] Add edit/delete functionality
 
 ### Phase 3: Practice System (Oefensysteem) ✅ COMPLETED
+
 - [x] Create practice page layout
 - [x] Implement word selection algorithm (15-20 words, prioritize incorrect)
 - [x] Build input field with auto-focus
@@ -205,6 +215,7 @@ type Statistieken = {
 - [x] Create three practice modes
 
 ### Phase 4: Statistics & Algorithm (Statistieken & Algoritme) ✅ COMPLETED
+
 - [x] Track correct/incorrect per word
 - [x] Calculate difficulty level
 - [x] Implement spaced repetition algorithm
@@ -213,6 +224,7 @@ type Statistieken = {
 - [ ] Create daily/weekly stats view (separate page - optional)
 
 ### Phase 5: Visual Polish (Visuele Afwerking) ✅ COMPLETED
+
 - [x] Add success/error animations (color feedback on cards)
 - [x] Implement progress bar (counter display)
 - [x] Add smooth transitions
@@ -221,6 +233,7 @@ type Statistieken = {
 - [x] Polish overall UI/UX
 
 ### Phase 6: Advanced Features (Geavanceerde Functies) 🚧 TODO
+
 - [ ] Export/import bukets (JSON)
 - [ ] Duplicate buket functionality
 - [ ] Search/filter bukets
@@ -235,80 +248,74 @@ type Statistieken = {
 
 ```typescript
 function selecteerWoorden(woorden: Woord[], aantal: number = 20): Woord[] {
-  // Priority scoring
-  const gescoreerdWoorden = woorden.map(woord => ({
-    woord,
-    score: berekenPrioriteit(woord)
-  }));
+	// Priority scoring
+	const gescoreerdWoorden = woorden.map((woord) => ({
+		woord,
+		score: berekenPrioriteit(woord),
+	}));
 
-  // Sort by priority (high to low)
-  gescoreerdWoorden.sort((a, b) => b.score - a.score);
+	// Sort by priority (high to low)
+	gescoreerdWoorden.sort((a, b) => b.score - a.score);
 
-  // Take top N, shuffle
-  const geselecteerd = gescoreerdWoorden
-    .slice(0, aantal)
-    .map(item => item.woord);
+	// Take top N, shuffle
+	const geselecteerd = gescoreerdWoorden
+		.slice(0, aantal)
+		.map((item) => item.woord);
 
-  return shuffle(geselecteerd);
+	return shuffle(geselecteerd);
 }
 
 function berekenPrioriteit(woord: Woord): number {
-  let score = 0;
+	let score = 0;
 
-  // High priority: many incorrect answers
-  score += woord.onjuistAantal * 3;
+	// High priority: many incorrect answers
+	score += woord.onjuistAantal * 3;
 
-  // Medium priority: high difficulty
-  score += woord.moeilijkheidsgraad * 2;
+	// Medium priority: high difficulty
+	score += woord.moeilijkheidsgraad * 2;
 
-  // Low priority: needs repetition (due date passed)
-  if (new Date(woord.volgendeHerhaling) < new Date()) {
-    score += 5;
-  }
+	// Low priority: needs repetition (due date passed)
+	if (new Date(woord.volgendeHerhaling) < new Date()) {
+		score += 5;
+	}
 
-  // Penalty: recently correct
-  if (woord.juistAantal > woord.onjuistAantal) {
-    score -= woord.juistAantal;
-  }
+	// Penalty: recently correct
+	if (woord.juistAantal > woord.onjuistAantal) {
+		score -= woord.juistAantal;
+	}
 
-  return Math.max(0, score);
+	return Math.max(0, score);
 }
 ```
 
 ### 2. Spaced Repetition Algorithm (Herhalingsalgoritme)
 
 ```typescript
-function berekenVolgendeHerhaling(
-  woord: Woord,
-  juist: boolean
-): string {
-  const nu = new Date();
-  let interval: number; // days
+function berekenVolgendeHerhaling(woord: Woord, juist: boolean): string {
+	const nu = new Date();
+	let interval: number; // days
 
-  if (juist) {
-    // Increase interval on success
-    const successStreak = woord.juistAantal - woord.onjuistAantal;
-    interval = Math.min(30, Math.pow(2, successStreak)); // Max 30 days
-  } else {
-    // Reset to 1 day on failure
-    interval = 1;
-  }
+	if (juist) {
+		// Increase interval on success
+		const successStreak = woord.juistAantal - woord.onjuistAantal;
+		interval = Math.min(30, Math.pow(2, successStreak)); // Max 30 days
+	} else {
+		// Reset to 1 day on failure
+		interval = 1;
+	}
 
-  nu.setDate(nu.getDate() + interval);
-  return nu.toISOString();
+	nu.setDate(nu.getDate() + interval);
+	return nu.toISOString();
 }
 
-function updateMoeilijkheidsgraad(
-  woord: Woord,
-  juist: boolean
-): number {
-  const huidig = woord.moeilijkheidsgraad;
+function updateMoeilijkheidsgraad(woord: Woord, juist: boolean): number {
+	const huidig = woord.moeilijkheidsgraad;
 
-  if (juist) {
-    return Math.max(0, huidig - 1);
-  } else {
-    return Math.min(10, huidig + 2);
-  }
+	if (juist) {
+		return Math.max(0, huidig - 1);
+	} else {
+		return Math.min(10, huidig + 2);
+	}
 }
 ```
 
@@ -316,56 +323,60 @@ function updateMoeilijkheidsgraad(
 
 ```typescript
 function formateerTekst(input: string): string[] {
-  // Remove extra whitespace and split by newline
-  const regels = input
-    .split('\n')
-    .map(regel => regel.trim())
-    .filter(regel => regel.length > 0);
+	// Remove extra whitespace and split by newline
+	const regels = input
+		.split("\n")
+		.map((regel) => regel.trim())
+		.filter((regel) => regel.length > 0);
 
-  const geformatteerd: string[] = [];
+	const geformatteerd: string[] = [];
 
-  for (const regel of regels) {
-    // Check if line contains colon (word:translation format)
-    if (regel.includes(':')) {
-      const [woord, vertaling] = regel.split(':').map(s => s.trim());
-      if (woord && vertaling) {
-        geformatteerd.push(`${woord}: ${vertaling}`);
-      }
-    } else {
-      // Paragraph mode: extract individual words
-      const woorden = regel
-        .replace(/[.,!?;:()""'']/g, '') // Remove punctuation
-        .split(/\s+/)
-        .filter(w => w.length > 0);
+	for (const regel of regels) {
+		// Check if line contains colon (word:translation format)
+		if (regel.includes(":")) {
+			const [woord, vertaling] = regel.split(":").map((s) => s.trim());
+			if (woord && vertaling) {
+				geformatteerd.push(`${woord}: ${vertaling}`);
+			}
+		} else {
+			// Paragraph mode: extract individual words
+			const woorden = regel
+				.replace(/[.,!?;:()""'']/g, "") // Remove punctuation
+				.split(/\s+/)
+				.filter((w) => w.length > 0);
 
-      geformatteerd.push(...woorden);
-    }
-  }
+			geformatteerd.push(...woorden);
+		}
+	}
 
-  return geformatteerd;
+	return geformatteerd;
 }
 ```
 
 ## UI/UX Considerations (UI/UX Overwegingen)
 
 ### Color Scheme (Kleurenschema)
+
 - Primary: Blue/Indigo (learning, trust)
 - Success: Green (correct answers)
 - Error: Red (incorrect answers)
 - Neutral: Gray scales (backgrounds, text)
 
 ### Typography (Typografie)
+
 - Headings: Bold, clear
 - Body: Geist Sans (readable)
 - Code/Input: Geist Mono (monospace for typing)
 
 ### Animations (Animaties)
+
 - Success: Scale + fade in green checkmark
 - Error: Shake + red highlight
 - Transitions: 200-300ms easing
 - Page transitions: Smooth fade
 
 ### Accessibility (Toegankelijkheid)
+
 - High contrast text
 - Focus indicators for keyboard navigation
 - ARIA labels for screen readers
@@ -374,6 +385,7 @@ function formateerTekst(input: string): string[] {
 ## Testing Strategy (Teststrategie)
 
 ### Manual Testing Checklist
+
 - [ ] Create buket with word:translation format
 - [ ] Create buket with paragraph text
 - [ ] Format button works correctly
